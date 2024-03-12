@@ -1,0 +1,257 @@
+<p class="text-xl bold text-center">-You're Cars !-</p>
+
+
+<div class="flex justify-end space-x-4 items-center">
+  <p>Add new car!</p>
+  <div class="w-auto h-auto">
+    <div class="flex-1 h-full">
+      <div (click)="showAddCarForRentForm = true" class="flex items-center justify-center flex-1 h-full p-2 bg-blue-800 text-white shadow rounded-full">
+        <div class="relative">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car Rental Price</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Make</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Model</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Manifacturing Year</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Fuel Type</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Status</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+    <tr *ngFor="let car of carsForRent" class="hover:bg-gray-50">
+
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+            {{ car.rentalPrice }}
+          </span>
+      </td>
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+            {{ car.make }}
+          </span>
+      </td>
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+            {{ car.model }}
+          </span>
+      </td>
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+            {{ car.manifacturingYear }}
+          </span>
+      </td>
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+            {{ car.fuel }}
+          </span>
+      </td>
+
+
+      <td class="px-6 py-4">
+          <span
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+          --
+          </span>
+      </td>
+
+
+
+
+      <td class="px-6 py-4">
+        <div class="flex justify-start gap-4">
+          <!--          <a x-data="{ tooltip: 'Delete' }" href="#">-->
+          <button (click)="deleteCarForRent(car.carRentId)" >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-6 w-6"
+              x-tooltip="tooltip"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+              />
+            </svg>
+          </button>
+
+          <button  (click)="updateCarRent(car.carRentId)" >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-6 w-6"
+              x-tooltip="tooltip"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+              />
+            </svg>
+          </button>
+          <!--          <button (click)="assignMember(car.code)" class="bg-pink-500 text-white rounded">-->
+          <!--            Assign to Member-->
+          <!--          </button>-->
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+</div>
+
+
+
+<nav aria-label="Page navigation example" class="flex justify-center ">
+  <ul class="inline-flex -space-x-px text-base h-10">
+    <li *ngFor="let page of pages">
+      <a [routerLink]="'/cars'" (click)="loadPage(page)"
+         [class.active-page]="currentPage === page"
+         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white
+                transition-colors duration-300 ease-in-out
+                focus:outline-none"
+      >{{ page }}</a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+<!--add form-->
+
+<div *ngIf="showAddCarForRentForm" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+  <div class="bg-white rounded-lg p-6 max-w-md">
+    add form
+    <form [formGroup]="carRentAddForm" (ngSubmit)="submitNewCar()">
+      <label for="makeNew" class="block mb-2">Car's makeNew:</label>
+      <input type="text" id="makeNew" formControlName="makeNew"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+      <label for="manifacturingYearNew" class="block mb-2">Car's manifacturingYearNew:</label>
+      <input type="number" id="manifacturingYearNew" name="manifacturingYearNew"  formControlName="manifacturingYearNew"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+
+
+      <label for="fuelNew" class="block mb-2">What Fuel Type?</label>
+      <select id="fuelNew" name="fuelNew" formControlName="fuelNew"
+              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500"
+      >
+        <option value="" disabled>Select fuel type</option>
+        <option *ngFor="let fuel of fuels" [value]="fuel">{{ fuel }}</option>
+      </select>
+
+
+      <label for="modelNew" class="block mb-2">Car's modelNew:</label>
+      <input type="text" id="modelNew" name="modelNew"  formControlName="modelNew"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+      <label for="rentalPriceNew" class="block mb-2">Car's rental price:</label>
+      <input type="number" id="rentalPriceNew" name="rentalPriceNew" formControlName="rentalPriceNew"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+
+
+      <div class="flex justify-end">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Add</button>
+        <button type="button" (click)="cancelAdd()" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div *ngIf="isUpdateCarRentMode" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+  <div class="bg-white rounded-lg p-6 max-w-md">
+    Update form
+    <form [formGroup]="updateCarRentForm" (ngSubmit)="submitCarRentUpdate()">
+      <label for="make" class="block mb-2">Car's make:</label>
+      <input type="text" id="make" formControlName="make"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+      <label for="manifacturingYear" class="block mb-2">Car's manifacturingYear:</label>
+      <input type="number" id="manifacturingYear" name="manifacturingYear"  formControlName="manifacturingYear"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+
+
+      <label for="fuel" class="block mb-2">What Fuel Type?</label>
+      <select id="fuel" name="fuel" formControlName="fuel"
+              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500"
+      >
+        <option value="" disabled>Select fuel type</option>
+        <option *ngFor="let fuel of fuels" [value]="fuel">{{ fuel }}</option>
+      </select>
+
+
+      <label for="model" class="block mb-2">Car's model:</label>
+      <input type="text" id="model" name="model"  formControlName="model"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+      <label for="rentalPrice" class="block mb-2">Car's rental price:</label>
+      <input type="number" id="rentalPrice" name="rentalPrice" formControlName="rentalPrice"
+             class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+
+
+
+      <div class="flex justify-end">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Add</button>
+        <button type="button" (click)="cancelUpdate()" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
