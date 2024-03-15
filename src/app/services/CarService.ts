@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {CarForRent} from "../models/interfaces/carforrent";
 import {CarForSell} from "../models/interfaces/carforsell";
@@ -23,12 +23,18 @@ export class CarService {
 //     return this.http.post<CarForRent>(`${this.apiUrl}/for-rent`, requestPayload);
 //   }
 
-
+  // addCarForRent(carForRent: FormData): Observable<CarForRent> {
+  //   const headers = new HttpHeaders();
+  //   headers.append('Content-Type', 'multipart/form-data'); // Set the content type to multipart/form-data
+  //
+  //   return this.http.post<CarForRent>(`${this.apiUrl}/for-rent`, carForRent, { headers });
+  // }
+  // addCarForRent(formData: FormData): Observable<any> {
+  //   return this.http.post<any>(`${this.apiUrl}/for-rent`, formData);
+  // }
 
   addCarForRent(carForRent: CarForRent): Observable<CarForRent> {
-
-
-
+    console.log("car rent service:",carForRent);
     return this.http.post<CarForRent>(`${this.apiUrl}/for-rent`, carForRent);
   }
 

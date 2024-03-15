@@ -1,4 +1,3 @@
-import {Agency} from "./Agency";
 
 export enum FuelType{
   DIESEL="DIESEL",
@@ -6,7 +5,7 @@ export enum FuelType{
   ETHANOL="ETHANOL",
   GASOLINE="GASOLINE"
 }
-export interface CarForRent {
+export interface CarForRentResponse {
   carRentId?: number;
   rentalPrice: number;
   make: string;
@@ -15,5 +14,6 @@ export interface CarForRent {
   manifacturingYear: number;
   fuel: FuelType;
   agencyId:string;
-  agency?:Agency;
+  email:string;
+  name:string;
 }

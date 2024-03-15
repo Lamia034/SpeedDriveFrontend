@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -14,6 +14,11 @@ import { FeedsComponent } from './feeds/feeds.component';
 import {JwtModule} from "@auth0/angular-jwt";
 import {AuthResponse} from "./models/responses/AuthResponse";
 import { CarsComponent } from './cars/cars.component';
+import {LoginService} from "./services/LoginService";
+import {AuthInterceptor} from "./interceptor/AuthInterceptor";
+import { CarDetailsComponent } from './car-details/car-details.component';
+import {NgOptimizedImage} from "@angular/common";
+// import {AuthService} from "./services/AuthService";
 export function tokenGetter() {
   const authResponseJson = localStorage.getItem('authResponse');
 
@@ -33,7 +38,8 @@ export function tokenGetter() {
     ProfileComponent,
     DashboardComponent,
     FeedsComponent,
-    CarsComponent
+    CarsComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +51,16 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       },
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOptimizedImage
   ],
-  providers: [],
+  providers: [LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

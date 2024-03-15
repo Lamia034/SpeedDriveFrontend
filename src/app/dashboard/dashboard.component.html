@@ -24,6 +24,7 @@
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Model</th>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Manifacturing Year</th>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Fuel Type</th>
+      <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Image</th>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Car's Status</th>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
     </tr>
@@ -33,31 +34,28 @@
 
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-black"
           >
-            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
             {{ car.rentalPrice }}
           </span>
       </td>
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-black"
           >
-            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
             {{ car.make }}
           </span>
       </td>
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-black"
           >
-            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
             {{ car.model }}
           </span>
       </td>
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-black"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
             {{ car.manifacturingYear }}
@@ -65,17 +63,23 @@
       </td>
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-black"
           >
-            <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
             {{ car.fuel }}
           </span>
       </td>
 
+      <td class="px-6 py-4">
+          <span *ngIf="car.imagePath"
+            class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold "
+          >
+           <img [src]="car.imagePath ">
+          </span>
 
+      </td>
       <td class="px-6 py-4">
           <span
-            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-black"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
           --
@@ -203,6 +207,9 @@
       <input type="number" id="rentalPriceNew" name="rentalPriceNew" formControlName="rentalPriceNew"
              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
 
+      <label for="imageNew" class="block mb-2">Car's image:</label>
+      <input type="file" id="imageNew" name="imageNew" (change)="onImageChange($event)"
+             class="mb-4">
 
 
       <div class="flex justify-end">
@@ -237,6 +244,9 @@
         <option *ngFor="let fuel of fuels" [value]="fuel">{{ fuel }}</option>
       </select>
 
+      <label for="imagePath" class="block mb-2">Car's image:</label>
+      <input type="file" id="imagePath" name="imagePath" (change)="onUpdateImageChange($event)"
+             class="mb-4">
 
       <label for="model" class="block mb-2">Car's model:</label>
       <input type="text" id="model" name="model"  formControlName="model"

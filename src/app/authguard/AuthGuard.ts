@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTr
 import {BehaviorSubject, catchError, map, Observable, of, tap} from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {LoginService} from "../services/LoginService";
+// import {AuthService} from "../services/AuthService";
 
 
 
@@ -21,6 +22,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private jwtHelper: JwtHelperService,
     private loginService: LoginService,
+    // private authService: AuthService
   ) {}
   setRoles(token: string | null): void {
     if (token && !this.jwtHelper.isTokenExpired(token)) {
@@ -31,7 +33,14 @@ export class AuthGuard implements CanActivate {
       console.log("agency id extracted:",agencyId);
       localStorage.setItem('agencyId', agencyId);
       console.log("agency id stored:",localStorage);
-
+      const clientId = decodedToken?.clientId;
+      console.log("client id extracted:",clientId);
+      localStorage.setItem('clientId', clientId);
+      console.log("client id stored:",localStorage);
+      const userName = decodedToken?.name;
+      console.log("user name ", userName);
+      this.loginService.setUserName(userName);
+console.log("user name in auth gard after set :",this.loginService.getUserName());
       if (!this.areRolesEqual(userRoles, this.lastRoles)) {
 
         this.userRolesSubject.next(userRoles);

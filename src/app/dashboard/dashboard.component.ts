@@ -16,14 +16,14 @@ export class DashboardComponent implements OnInit {
   carsForRent: CarForRent[] = [];
   pages: number[] = [];
   currentPage = 0;
-  pageSize = 6;
+  pageSize = 9;
   newCar: any = {};
   fuels: string[] = Object.values(FuelType);
   isUpdateCarRentMode: boolean = false;
   updateCarRentForm!: FormGroup;
   selectedCarRentId: any;
   carsForSell: CarForSell[] | undefined;
-
+   imageURL: string | null = null;
   constructor(private carService: CarService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
       modelNew: new FormControl('', Validators.required),
       fuelNew: new FormControl('',Validators.required),
       rentalPriceNew: new FormControl('', Validators.required),
+      imageNew: new FormControl('', Validators.required)
+
     });
     this.updateCarRentForm = this.formBuilder.group({
       make: [ Validators.required, Validators.min(0)],
@@ -41,28 +43,69 @@ export class DashboardComponent implements OnInit {
       manifacturingYear: [Validators.required],
       fuel: [Validators.required],
       rentalPrice: ['', Validators.required],
+      imagePath: new FormControl('', Validators.required)
+
     });
   }
 
+
+
+
+
+
+
+
+  onImageChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = e.target.result;
+        this.carRentAddForm.patchValue({
+          imageNew: imageUrl
+        });
+
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onUpdateImageChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = e.target.result;
+        this.updateCarRentForm.patchValue({
+          imagePath: imageUrl
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+
   submitNewCar(): void {
     if (this.carRentAddForm.valid) {
-      const { makeNew, manifacturingYearNew, modelNew, fuelNew, rentalPriceNew } = this.carRentAddForm.value;
+      const { makeNew, manifacturingYearNew, modelNew, fuelNew, rentalPriceNew, imageNew } = this.carRentAddForm.value;
       const LoggedAgencyId = localStorage.getItem('agencyId') || '';
-      //ts-ignore
+
       const newCar: CarForRent = {
         make: makeNew,
         manifacturingYear: manifacturingYearNew,
         model: modelNew,
         fuel: fuelNew,
         rentalPrice: rentalPriceNew,
-   agencyId:LoggedAgencyId
+        imagePath: imageNew,
+
+        agencyId: LoggedAgencyId
       };
 
       this.carService.addCarForRent(newCar).subscribe(
         response => {
           console.log('Car added successfully:', response);
           this.refreshCars();
-          this.carRentAddForm.reset();
+          this.cancelAdd();
         },
         error => {
           console.error('Failed to add car:', error);
@@ -72,9 +115,12 @@ export class DashboardComponent implements OnInit {
   }
 
 
+
+
+
   cancelAdd(): void {
     console.log('Cancelling add...');
-    // this.carRentAddForm.reset();
+    this.carRentAddForm.reset();
     this.showAddCarForRentForm = false;
   }
 
@@ -92,7 +138,9 @@ export class DashboardComponent implements OnInit {
         model: carForRent.model,
         manifacturingYear: carForRent.manifacturingYear,
         fuel: carForRent.fuel,
-        rentalPrice: carForRent.rentalPrice
+        rentalPrice: carForRent.rentalPrice,
+        imagePath: carForRent.imagePath
+
       });
     }
     console.log(carForRent);
@@ -113,13 +161,15 @@ export class DashboardComponent implements OnInit {
         const manifacturingYear = this.updateCarRentForm.value.manifacturingYear;
         const fuel = this.updateCarRentForm.value.fuel;
         const rentalPrice = this.updateCarRentForm.value.rentalPrice;
+        const imagePath = this.updateCarRentForm.value.imagePath;
 
         const updatedCarForRent = {
           make: make,
           model: model,
           manifacturingYear: manifacturingYear,
           fuel: fuel,
-          rentalPrice: rentalPrice
+          rentalPrice: rentalPrice,
+          imagePath: imagePath
         };
         console.log("here");
 
@@ -177,4 +227,97 @@ export class DashboardComponent implements OnInit {
     this.fetchPage(page - 1);
     this.currentPage = page;
   }
+
+  // submitNewCar(): void {
+  //   if (this.carRentAddForm.valid) {
+  //     const { makeNew, manufacturingYearNew, modelNew, fuelNew, rentalPriceNew, imageNew } = this.carRentAddForm.value; // Corrected variable name
+  //
+  //     const LoggedAgencyId = localStorage.getItem('agencyId') || '';
+  //
+  //     const formData = new FormData();
+  //     formData.append('make', makeNew);
+  //     formData.append('manufacturingYear', manufacturingYearNew); // Corrected variable name
+  //     formData.append('model', modelNew);
+  //     formData.append('fuel', fuelNew);
+  //     formData.append('rentalPrice', rentalPriceNew);
+  //     formData.append('image', imageNew); // Corrected variable name
+  //
+  //     formData.append('agencyId', LoggedAgencyId);
+  //
+  //     this.carService.addCarForRent(formData).subscribe(
+  //       response => {
+  //         console.log('Car added successfully:', response);
+  //         this.refreshCars();
+  //         this.carRentAddForm.reset();
+  //       },
+  //       error => {
+  //         console.error('Failed to add car:', error);
+  //       }
+  //     );
+  //   }
+  // }
+  // onImageChange(event: Event): void {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.files && inputElement.files.length > 0) {
+  //     this.selectedImage = inputElement.files[0];
+  //     this.carRentAddForm.patchValue({
+  //       imageNew: this.selectedImage,
+  //     });
+  //   }
+  // }
+
+  // submitNewCar(): void {
+  //   if (this.carRentAddForm.valid) {
+  //     const { makeNew, manifacturingYearNew, modelNew, fuelNew, rentalPriceNew } = this.carRentAddForm.value;
+  //     const LoggedAgencyId = localStorage.getItem('agencyId') || '';
+  //
+  //     const formData = new FormData();
+  //     formData.append('makeNew', makeNew);
+  //     formData.append('manifacturingYearNew', manifacturingYearNew);
+  //     formData.append('modelNew', modelNew);
+  //     formData.append('fuelNew', fuelNew);
+  //     formData.append('rentalPriceNew', rentalPriceNew);
+  //     formData.append('agencyId', LoggedAgencyId);
+  //     formData.append('imageNew', this.carRentAddForm.get('imageNew')?.value);
+  //
+  //     this.carService.addCarForRent(formData).subscribe(
+  //       response => {
+  //         console.log('Car added successfully:', response);
+  //         this.refreshCars();
+  //         this.carRentAddForm.reset();
+  //       },
+  //       error => {
+  //         console.error('Failed to add car:', error);
+  //       }
+  //     );
+  //   }
+  // }
+  // submitNewCar(): void {
+  //   if (this.carRentAddForm.valid) {
+  //     const { makeNew, manifacturingYearNew, modelNew, fuelNew, rentalPriceNew ,selectedImage } = this.carRentAddForm.value;
+  //     const LoggedAgencyId = localStorage.getItem('agencyId') || '';
+  //     //ts-ignore
+  //     const newCar: CarForRent = {
+  //       make: makeNew,
+  //       manifacturingYear: manifacturingYearNew,
+  //       model: modelNew,
+  //       fuel: fuelNew,
+  //       rentalPrice: rentalPriceNew,
+  //        image :selectedImage,
+  //
+  //       agencyId:LoggedAgencyId
+  //     };
+  //
+  //     this.carService.addCarForRent(newCar).subscribe(
+  //       response => {
+  //         console.log('Car added successfully:', response);
+  //         this.refreshCars();
+  //         this.carRentAddForm.reset();
+  //       },
+  //       error => {
+  //         console.error('Failed to add car:', error);
+  //       }
+  //     );
+  //   }
+  // }
 }

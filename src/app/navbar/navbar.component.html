@@ -193,7 +193,7 @@
 <!--      </li>-->
 
 
-      <li class="px-2" data-te-nav-item-ref *ngIf="!isLoggedIn">
+      <li class="px-2" data-te-nav-item-ref >
         <a [routerLink]="'/register'"
            class="text-white transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:flex [&.active]:text-black/90 dark:[&.active]:text-zinc-400 motion-reduce:transition-none"
            href="#"
@@ -202,7 +202,7 @@
           <strong class="ml-1 hidden sm:block">Register</strong>
         </a>
       </li>
-      <li class="px-2" data-te-nav-item-ref *ngIf="!isLoggedIn">
+      <li class="px-2" data-te-nav-item-ref>
         <a [routerLink]="'/login'"
            class="text-white transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:flex [&.active]:text-black/90 dark:[&.active]:text-zinc-400 motion-reduce:transition-none"
            href="#"
@@ -211,7 +211,9 @@
           <strong class="ml-1 hidden sm:block">Login</strong>
         </a>
       </li>
-      <li class="px-2" data-te-nav-item-ref *ngIf="isLoggedIn">
+      <li class="px-2" data-te-nav-item-ref >
+        <strong class="ml-1 hidden sm:block">{{ loggedInUserName }}</strong>
+
         <a (click)="logout()"
            class="text-white transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 sm:flex [&.active]:text-black/90 dark:[&.active]:text-zinc-400 motion-reduce:transition-none"
            href="#"
@@ -223,7 +225,6 @@
                alt="TE Avatar"
                loading="lazy"
           />
-          <strong class="ml-1 hidden sm:block">  hh</strong>
           <strong class="ml-1 hidden sm:block">Logout</strong>
         </a>
       </li>
