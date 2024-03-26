@@ -1,0 +1,106 @@
+<!-- This is an example component -->
+<div class="container flex mx-auto shadow-lg rounded-lg">
+  <!-- headaer -->
+
+  <!-- end header -->
+  <!-- Chatting -->
+  <div class="flex flex-row w-full bg-white">
+    <!-- chat list -->
+    <div  *ngFor="let chatRoom of chatRooms" class="flex flex-col w-full  border-r-2 ">
+      <!-- search compt -->
+      <div class="border-b-2 py-4 px-2">
+        <input
+          type="text"
+          placeholder="search chatting"
+          class="py-2 px-2 border-2 border-gray-200 rounded-2xl w-full"
+        />
+      </div>
+      <!-- end search compt -->
+      <!-- user list -->
+      <div
+        class="flex flex-row py-4 px-2 justify-center items-center border-b-2"
+      >
+        <div class="w-1/4">
+          <img
+            src="https://source.unsplash.com/_7LbC5J-jw4/600x600"
+            class="object-cover h-12 w-12 rounded-full"
+            alt=""
+          />
+        </div>
+        <div  class="w-full" (click)="openChat(chatRoom.chatRoomId,chatRoom.receiver)">
+
+          <div class="text-lg font-semibold" >Receiver</div>
+
+          <span class="text-gray-500">{{chatRoom.receiver}}</span>
+        </div>
+      </div>
+
+
+      <!-- end user list -->
+    </div>
+    <!-- end chat list -->
+    <!-- message -->
+    <div  *ngIf="showChat" class="overflow-auto  h-screen w-full px-5 flex flex-col justify-between">
+      <div class=" flex flex-col mt-5" *ngFor="let message of messages">
+        <div class=" flex justify-end mb-4" *ngIf="message.sender ===logged">
+          <div
+            class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+          >
+            {{message.text}}
+          </div>
+          <img
+            src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+            class="object-cover h-8 w-8 rounded-full"
+            alt=""
+          />
+        </div>
+        <div class="flex justify-start mb-4" *ngIf="message.receiver ===logged" >
+          <img
+            src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+            class="object-cover h-8 w-8 rounded-full"
+            alt=""
+          />
+          <div
+            class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
+          >
+            {{message.text}}
+          </div>
+        </div>
+
+
+      </div>
+
+
+<!--        <div class="flex flex-col mt-5">-->
+<!--          <ng-container *ngFor="let message of messages">-->
+<!--            <div class="flex justify-end mb-4">-->
+<!--              <div class="mr-2 py-3 px-4"-->
+<!--                   [ngClass]="{-->
+<!--          'bg-gray-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white': message.sender === logged,-->
+<!--          'bg-blue-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white': message.receiver === logged-->
+<!--       }">-->
+<!--              {{ message.text }}-->
+<!--              </div>-->
+<!--              <img src="https://source.unsplash.com/vpOeXr5wmR4/600x600" class="object-cover h-8 w-8 rounded-full" alt="">-->
+<!--            </div>-->
+<!--          </ng-container>-->
+
+<!--        </div>-->
+
+      <div >
+        <input
+
+        />
+      </div>
+      <form class="py-5" [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()">
+        <input           class="w-full bg-gray-300 py-5 px-3 rounded-xl"
+                         type="text" formControlName="text"
+                         placeholder="type your message here...">
+<!--        <button type="submit">Send</button>-->
+      </form>
+    </div>
+    <!-- end message -->
+
+  </div>
+</div>
+

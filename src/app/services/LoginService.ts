@@ -40,10 +40,7 @@ export class LoginService {
 
   }
 
-  logout() {
 
-    this.isLoggedInSubject.next(false);
-  }
 
   // private checkAuthenticationStatus() {
   //

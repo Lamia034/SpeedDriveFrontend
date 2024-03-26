@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@a
 import {LogoutService} from "../services/LogoutService.service";
 import {LoginService} from "../services/LoginService";
 import {Observable, Subscription} from "rxjs";
+import {SharedService} from "../shared.service";
 // import {AuthService} from "../services/AuthService";
 
 @Component({
@@ -11,23 +12,36 @@ import {Observable, Subscription} from "rxjs";
   providers: [LoginService]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  loggedInUserName: string | null = null;
+  // loggedInUserName: string | null = null;
   private userNameSubscription: Subscription | undefined;
+  loggedInUserName: string | undefined;
+  isLoggedIn: boolean = false;
+  userRole: string ='';
 
-  constructor(private loginService: LoginService, private cdRef: ChangeDetectorRef) { }
+  constructor(public sharedService: SharedService,private loginService: LoginService, private cdRef: ChangeDetectorRef, private logoutService: LogoutService) { }
 
   ngOnInit(): void {
-    this.userNameSubscription = this.loginService.getUserName().subscribe(name => {
-      this.loggedInUserName = name;
-      this.cdRef.detectChanges(); // Manually trigger change detection
-    });
+    this.userRole = this.sharedService.getRole();
+    console.log("userRole:",this.userRole)
+    this.isLoggedIn = this.sharedService.getIsLoggedIn();
+    console.log("is logged in navbar:",this.isLoggedIn)
+    if (this.isLoggedIn) {
+      // If user is logged in, get and display the user's name
+      this.loggedInUserName = this.sharedService.getUserName();
+    }
+    // this.userNameSubscription = this.loginService.getUserName().subscribe(name => {
+    //   this.loggedInUserName = name;
+    //   this.cdRef.detectChanges(); // Manually trigger change detection
+    // });
+
+    // console.log("is logged in navbar ",this.sharedService.isLoggedIn)
   }
 
   ngOnDestroy(): void {
     // Unsubscribe to avoid memory leaks
-    if (this.userNameSubscription) {
-      this.userNameSubscription.unsubscribe();
-    }
+    // if (this.userNameSubscription) {
+    //   this.userNameSubscription.unsubscribe();
+    // }
   }
 
 
@@ -55,7 +69,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.loginService.logout();
+    this.logoutService.logout();
   }
 }
 

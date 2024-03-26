@@ -7,4 +7,5 @@ export interface RentResponse {
   endDate:string;
 client: Client;
 carForRent:CarForRent;
+
 }

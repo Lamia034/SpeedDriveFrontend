@@ -15,7 +15,7 @@ import {FeedsService} from "../services/FeedsService";
 export class FeedsComponent implements OnInit {
   pages: number[] = [];
   currentPage = 0;
-  pageSize = 9;
+  pageSize = 6;
   types: string[] = Object.values(FuelType);
   feeds: CarForRent[] = [];
   accessionDate = new Date();
@@ -64,7 +64,7 @@ export class FeedsComponent implements OnInit {
   }
 
   generatePageNumbers(): void {
-    this.pages = Array.from({ length: Math.ceil(this.feeds.length / this.pageSize) }, (_, i) => i + 1);
+    this.pages = Array.from({ length: 10 }, (_, i) => i + 1);
   }
 
   loadPage(page: number): void {

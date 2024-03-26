@@ -3,6 +3,7 @@ import {AuthResponse} from "../models/responses/AuthResponse";
 import {LoginService} from "../services/LoginService";
 import {Router} from "@angular/router";
 import {AuthGuard} from "../authguard/AuthGuard";
+import {SharedService} from "../shared.service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import {AuthGuard} from "../authguard/AuthGuard";
 })
 export class LoginComponent {
 
-  
+
   // @ts-ignore
   // registerRequest: RegisterRequest = new RegisterRequest();
   loginRequest = {
@@ -26,13 +27,17 @@ export class LoginComponent {
 
   constructor(private loginService: LoginService,
               private authGuard: AuthGuard,
+              private sharedService: SharedService,
               private router: Router) {}
 
   login(): void {
     this.loginService.login(this.loginRequest)
       .subscribe(
         (authResponse: AuthResponse) => {
-          console.log('Login successful:', authResponse);
+          // this.sharedService.isLoggedIn = true; // Set isLoggedIn to true
+          console.log("logged in login comp:",this.sharedService.isLoggedIn)
+          this.sharedService.setIsLoggedIn(true);
+          // console.log('Login successful:', authResponse);
           localStorage.setItem('speedDrive_authResponse', authResponse.token);
 
           // Call setRoles to update user roles

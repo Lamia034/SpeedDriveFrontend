@@ -1,8 +1,9 @@
 
 
 <body class="font-poppins bg-gray-100 relative">
-<div  class="p-20 w-auto flex px-24 justify-center relative">
+<div class="pt-6 text-center text-xl bold">Welcome to : {{carDetails?.name}}</div>
 
+<div  class="p-20 w-auto flex px-24 justify-center relative">
   <div  class="p-20 sm:p-16 md:p-20 lg:p-24 xl:p-20 w-auto flex flex-col md:flex-row px-4 sm:px-8 md:px-24 lg:px-24 xl:px-24 relative">
     <div *ngIf="carDetails?.imagePath" class="mr-10">
       <img
@@ -16,16 +17,7 @@
         {{carDetails?.model}}      </h1>
 
       <div >
-        <div class="flex flex-row items-center">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUdJREFUSEvt1sEqBXEUx/HPXVEsrC1ENvZSduwsbSQrNoqsvAEeAqU8AF6AN7BQsmRB3kBKKMX9153bGHPvTP1n7mzMZmrmf873/M/5/f/ntDT0tBriKgMewQqmIoJ8wjneEx9F4DHcYDoCmpjeYxZv4UMReAeHFUATF5s4LQOOYQ5jCUcY7zg6aL/36wYnQQf4ZRG4DiEN4aMfuDYh4bsfuDYhFYFD0fdi1JSx7QrpH5w9Tv+pjtVZnri22rfYyaBT/YA5vA4SvI6LXm2xTnH9KVu6LTYG3sZxrKJS9l0h5flM7zg0iVtMVgD/JaQicPg/ilVMdBYvYiHH8BpXPQJ8zAqpDDi7Jq/uYRTaxVdMZopmrjT4Exs4iwEmtmXBz+36L+OuCmiZmSvseB5r7fS+VAUtA55BmIeT0aUydlGqKwNlHTUG/gHwKlYfkJWuMAAAAABJRU5ErkJggg=="/>
-          Speak to 'em directly in chat
-        </div>
-        <div class="flex flex-row items-center">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAa9JREFUSEvtlj8oRXEUxz9PSmKxWFgU2chEmWws2CySTRZKkpB/IUmKRTbJYsNAJpNiEpsoC4vFQlLCPa9z6/Trve6fd3nKe3V7t3PP7/s559zfueeXIk+/VJ64FMC/Vnm31JPAIFCVcASPwCaw6OtacAdwlDDQlWsHTsRowZLtgnq+AmUJBWG1hLHkgmc8w6zCaoBdoDVH+BnQC9yrzpzPsBlbsNjlGtYISyMG8AZMAOvAl14ikREs2QrcrUStZt8cEn6hWd4Zf4GHAu8DA8CTLigCRoF5oCRLAO/ANLDq/X+qTyWwBXSHBYvfMzACbBtQPbAHNDrwK6AHuDH2fmDNK3eFsQWW2uqeAn3AgxqLgXHNTkxShWXgQ59XAztAW4bKRALL+hdPeArYMBulQYWvzb4Y0pYsz/I6IoN9nXPN/tYRrtMsWwI2YGyw6MomEoEVhYxpN2TbdDaWnMC+0KXeNIVss1DtFEErkmsiGUciRunjOMJBa/5WxnYsBkUe97l8C9KHATudOoGDuIoh13UBhy5YBoF80OUk8hNHn2MdPOkBUjjehnxVubv9v1J/AzG/WB9938PnAAAAAElFTkSuQmCC"/>
-          {{carDetails?.email}}
 
-          {{carDetails?.name}}
-        </div>
         <div class="flex flex-row items-center">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAY5JREFUSEvN1jFIVXEUx/GPi1Okm4KDLlJtgpNBpKNDSks0OoYgbtIkNITo0OAiba46SLQ46hIFtSeBoNDQWIjhZN3/4//kdXn3+b/wf733psfld8/3nHN//3P+A3r0G+gRVwp4Aksxwd3i/1lFsqm6xusp4FkcRdgcjivAqbr+Az/CG0wndqSTTf7gC1bxsVVYbvUQvuNOZtP9xBh+N+OWwQ/xITO0GW4Gn6rArQbJzf/HmOWK+wLc6eikdqPyiHWquG/BI/iFqw7ld6XicNZ/YOt/gkdxjguM47LuGK3zjYfxAJN4jvkI28d7fCuen8RkmnlkafUrrN9i52XstGiygEO8jcJMLyvgZWiQZQOHYO+wWIJvx0VQzikrOHzPJyXC28LhL9p0Iiv4NG6azWJ93sVKXCyPuwkeRLj+rMX1GVjB5a/xrJvg1Bmd9TjVhWZ3dZ0Eks11H1/rRK6hvRenW+OVdtfbAzytETBFuhfH7I22HTg8WygGxVSGW+Y1PuOwnF3KhT6lotqanoH/Ag1hdh9qnlIAAAAAAElFTkSuQmCC"/>
           {{carDetails?.manifacturingYear}}
@@ -36,18 +28,25 @@
         </div>
         <div class="flex flex-row items-center">
           <svg class="h-8 w-8 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="7" cy="17" r="2" />  <circle cx="17" cy="17" r="2" />  <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5" /></svg>
-          {{carDetails?.model}}
+          {{carDetails?.make}}
         </div>
+        <div [routerLink]="['/messages', carDetails?.agencyId]" class="flex flex-row items-center">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUdJREFUSEvt1sEqBXEUx/HPXVEsrC1ENvZSduwsbSQrNoqsvAEeAqU8AF6AN7BQsmRB3kBKKMX9153bGHPvTP1n7mzMZmrmf873/M/5/f/ntDT0tBriKgMewQqmIoJ8wjneEx9F4DHcYDoCmpjeYxZv4UMReAeHFUATF5s4LQOOYQ5jCUcY7zg6aL/36wYnQQf4ZRG4DiEN4aMfuDYh4bsfuDYhFYFD0fdi1JSx7QrpH5w9Tv+pjtVZnri22rfYyaBT/YA5vA4SvI6LXm2xTnH9KVu6LTYG3sZxrKJS9l0h5flM7zg0iVtMVgD/JaQicPg/ilVMdBYvYiHH8BpXPQJ8zAqpDDi7Jq/uYRTaxVdMZopmrjT4Exs4iwEmtmXBz+36L+OuCmiZmSvseB5r7fS+VAUtA55BmIeT0aUydlGqKwNlHTUG/gHwKlYfkJWuMAAAAABJRU5ErkJggg=="/>
+          Speak to 'em directly in chat
+        </div>
+
+        <div class="flex flex-row items-center">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAa9JREFUSEvtlj8oRXEUxz9PSmKxWFgU2chEmWws2CySTRZKkpB/IUmKRTbJYsNAJpNiEpsoC4vFQlLCPa9z6/Trve6fd3nKe3V7t3PP7/s559zfueeXIk+/VJ64FMC/Vnm31JPAIFCVcASPwCaw6OtacAdwlDDQlWsHTsRowZLtgnq+AmUJBWG1hLHkgmc8w6zCaoBdoDVH+BnQC9yrzpzPsBlbsNjlGtYISyMG8AZMAOvAl14ikREs2QrcrUStZt8cEn6hWd4Zf4GHAu8DA8CTLigCRoF5oCRLAO/ANLDq/X+qTyWwBXSHBYvfMzACbBtQPbAHNDrwK6AHuDH2fmDNK3eFsQWW2uqeAn3AgxqLgXHNTkxShWXgQ59XAztAW4bKRALL+hdPeArYMBulQYWvzb4Y0pYsz/I6IoN9nXPN/tYRrtMsWwI2YGyw6MomEoEVhYxpN2TbdDaWnMC+0KXeNIVss1DtFEErkmsiGUciRunjOMJBa/5WxnYsBkUe97l8C9KHATudOoGDuIoh13UBhy5YBoF80OUk8hNHn2MdPOkBUjjehnxVubv9v1J/AzG/WB9938PnAAAAAElFTkSuQmCC"/>
+         <a href="mailto:{{carDetails?.email}}">{{carDetails?.email}}</a>
+
+        </div>
+
       </div>
       <div id="social" class="flex flex-wrap justify-start items-center gap-4">
         <a rel="noopener" (click)="showAddRentForm = true" class="bg-yellow-500 text-center rounded-lg p-5 w-64 flex items-center gap-2 text-white">
           <span class="text-center">Rent The Car! </span>
         </a>
-
       </div>
-
-
-
     </div>
   </div>
 </div>
@@ -56,7 +55,7 @@
 <!--add form-->
 
 <div *ngIf="showAddRentForm" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-  <div class="bg-white rounded-lg p-6 max-w-md">
+  <div class="bg-white rounded-lg p-6 max-w-md ">
     add form     <!-- component -->
     <div class="flex items-center justify-center p-12">
       <!-- Author: FormBold Team -->
@@ -67,26 +66,31 @@
 
 
 
-            <div class="-mx-3 flex flex-wrap">
-              <div class="w-full px-3 sm:w-1/2">
+            <div class=" flex flex-wrap">
+              <div class="w-full px-3 ">
                 <div class="mb-5">
                   <label
-                    for="startDate"
+
                     class="mb-3 block text-base font-medium text-[#07074D]"
                   >
                    Start Date
                   </label>
-                  <input
-                    type="datetime-local"
-                    name="startDate"
-                    id="startDate" formControlName="startDate"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  <input type="datetime-local" name="startDate" id="startDate" formControlName="startDate"
+                         class="w-full  rounded-md border border-gray-300 bg-white py-3 px-6 text-base font-medium outline-none focus:border-purple-600 focus:shadow-md"
+                         [min]="minDateTime"
+
+                         [max]="maxDateTime"
+
                   />
+
+
+
+
                 </div>
               </div>
 
 
-              <div class="w-full px-3 sm:w-1/2">
+              <div class="w-full px-3 ">
                 <div class="mb-5">
                   <label
                     for="endDate"
@@ -98,75 +102,18 @@
                     type="datetime-local"
                     name="endDate"
                     id="endDate" formControlName="endDate"
+                    [min]="minDateTime"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
                 </div>
               </div>
 
-<!--              <input name="carRentId" id="carRentId" value="{{carDetails?.carRentId}}" hidden />-->
 
-
-
-<!--              <div class="w-full px-3 sm:w-1/2">-->
-<!--                <div class="mb-5">-->
-<!--                  <label-->
-<!--                    for="time"-->
-<!--                    class="mb-3 block text-base font-medium text-[#07074D]"-->
-<!--                  >-->
-<!--                    Time-->
-<!--                  </label>-->
-<!--                  <input-->
-<!--                    type="time"-->
-<!--                    name="time"-->
-<!--                    id="time"-->
-<!--                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"-->
-<!--                  />-->
-<!--                </div>-->
-<!--              </div>-->
             </div>
 
-<!--            <div class="mb-5">-->
-<!--              <label class="mb-3 block text-base font-medium text-[#07074D]">-->
-<!--                Are you coming to the event?-->
-<!--              </label>-->
-<!--              <div class="flex items-center space-x-6">-->
-<!--                <div class="flex items-center">-->
-<!--                  <input-->
-<!--                    type="radio"-->
-<!--                    name="radio1"-->
-<!--                    id="radioButton1"-->
-<!--                    class="h-5 w-5"-->
-<!--                  />-->
-<!--                  <label-->
-<!--                    for="radioButton1"-->
-<!--                    class="pl-3 text-base font-medium text-[#07074D]"-->
-<!--                  >-->
-<!--                    Yes-->
-<!--                  </label>-->
-<!--                </div>-->
-<!--                <div class="flex items-center">-->
-<!--                  <input-->
-<!--                    type="radio"-->
-<!--                    name="radio1"-->
-<!--                    id="radioButton2"-->
-<!--                    class="h-5 w-5"-->
-<!--                  />-->
-<!--                  <label-->
-<!--                    for="radioButton2"-->
-<!--                    class="pl-3 text-base font-medium text-[#07074D]"-->
-<!--                  >-->
-<!--                    No-->
-<!--                  </label>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
 
             <div>
-<!--              <button type="submit"-->
-<!--                class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"-->
-<!--              >-->
-<!--                Submit-->
-<!--              </button>-->
+
               <div class="flex justify-end">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Send</button>
                 <button type="button" (click)="cancelAdd()" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cancel</button>
@@ -178,3 +125,19 @@
   </div>
 </div>
 
+<script >
+  // var dateToday = new Date();
+  // var dates = $("#from, #to").datepicker({
+  //   defaultDate: "+1w",
+  //   changeMonth: true,
+  //   numberOfMonths: 3,
+  //   minDate: dateToday,
+  //   onSelect: function(selectedDate) {
+  //     var option = this.id == "from" ? "minDate" : "maxDate",
+  //       instance = $(this).data("datepicker"),
+  //       date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+  //     dates.not(this).datepicker("option", option, date);
+  //   }
+  // });
+
+</script>

@@ -7,15 +7,20 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LogoutService {
+  isLoggedIn: boolean = true;
+
   constructor(private router: Router) {}
 
   logout(): void {
     console.log('Logging out...');
     localStorage.removeItem('authResponse');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('clientId' && 'agencyId');
     this.clearLocalStorage();
-    console.log('Navigating to login...');
     this.router.navigate(['/login']);
+    console.log('ag',localStorage.getItem('clientId'));
+    console.log('c',localStorage.getItem('agencyId'));
+    this.isLoggedIn = false; // Set login status to false
+
   }
 
   clearLocalStorage(): void {

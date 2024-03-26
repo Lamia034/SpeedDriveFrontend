@@ -1,3 +1,4 @@
+
 <p class="text-xl bold text-center">-You're Cars !-</p>
 
 
@@ -71,7 +72,7 @@
 
       <td class="px-6 py-4">
           <span *ngIf="car.imagePath"
-            class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold "
+            class="inline-flex items-center gap-1 w-20 h-10 rounded-full px-2 py-1 text-xs font-semibold "
           >
            <img [src]="car.imagePath ">
           </span>
@@ -82,7 +83,7 @@
             class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-black"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-          --
+          {{car.carStatus}}
           </span>
       </td>
 
@@ -180,11 +181,11 @@
   <div class="bg-white rounded-lg p-6 max-w-md">
     add form
     <form [formGroup]="carRentAddForm" (ngSubmit)="submitNewCar()">
-      <label for="makeNew" class="block mb-2">Car's makeNew:</label>
+      <label for="makeNew" class="block mb-2">Car's make:</label>
       <input type="text" id="makeNew" formControlName="makeNew"
              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
 
-      <label for="manifacturingYearNew" class="block mb-2">Car's manifacturingYearNew:</label>
+      <label for="manifacturingYearNew" class="block mb-2">Car's manifacturingYear:</label>
       <input type="number" id="manifacturingYearNew" name="manifacturingYearNew"  formControlName="manifacturingYearNew"
              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
 
@@ -199,7 +200,7 @@
       </select>
 
 
-      <label for="modelNew" class="block mb-2">Car's modelNew:</label>
+      <label for="modelNew" class="block mb-2">Car's model:</label>
       <input type="text" id="modelNew" name="modelNew"  formControlName="modelNew"
              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
 
@@ -245,7 +246,7 @@
       </select>
 
       <label for="imagePath" class="block mb-2">Car's image:</label>
-      <input type="file" id="imagePath" name="imagePath" (change)="onUpdateImageChange($event)"
+      <input type="file" id="imagePath" name="imagePath" (change)="onImageChange($event)"
              class="mb-4">
 
       <label for="model" class="block mb-2">Car's model:</label>
@@ -255,13 +256,23 @@
       <label for="rentalPrice" class="block mb-2">Car's rental price:</label>
       <input type="number" id="rentalPrice" name="rentalPrice" formControlName="rentalPrice"
              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
-
-
-
+<label for="carStatus" class="block mb-2"></label>
+      <select id="carStatus" name="carStatus" formControlName="carStatus"
+              class="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500"
+      >
+        <option value="" disabled>Select car status</option>
+        <option *ngFor="let carStatus of carStatuss" [value]="carStatus">{{ carStatus }}</option>
+      </select>
       <div class="flex justify-end">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Add</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Update</button>
         <button type="button" (click)="cancelUpdate()" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cancel</button>
       </div>
     </form>
   </div>
 </div>
+
+
+
+
+
+<button [routerLink]="'/rentsbyagency'">see you're rents</button>

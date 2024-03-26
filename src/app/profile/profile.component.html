@@ -1,1 +1,67 @@
-<p>profile works!</p>
+
+
+<div class="pt-6 text-center text-xl bold">Thank You For Being Client {{sharedService.getUserName()}}</div>
+
+<div *ngFor="let rent of rents"  class="p-20 w-auto flex px-24 justify-center relative">
+  <div  class="border-2 border-yellow-500  rounded-md bg-white  p-20 sm:p-16 md:p-20 lg:p-24 xl:p-20 w-auto flex flex-col md:flex-row px-4 sm:px-8 md:px-24 lg:px-24 xl:px-24 relative">
+    <div *ngIf="rent.carForRent.imagePath" class="mr-10">
+      <img
+        class="rounded-lg min-w-[100px] w-full h-auto md:w-auto md:h-auto"
+        [src]="rent.carForRent.imagePath"
+        alt="image of myself"
+      />
+    </div>
+    <div class="w-full sm:w-[70%] md:w-[60%] lg:w-[50%]">
+      <h1 class="text-black font-bold text-3xl mt-6 mb-8">
+        {{rent.carForRent.model}}      </h1>
+
+      <div >
+        <div [routerLink]="['/messages', rent.agencyId]" class="flex flex-row items-center">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAUdJREFUSEvt1sEqBXEUx/HPXVEsrC1ENvZSduwsbSQrNoqsvAEeAqU8AF6AN7BQsmRB3kBKKMX9153bGHPvTP1n7mzMZmrmf873/M/5/f/ntDT0tBriKgMewQqmIoJ8wjneEx9F4DHcYDoCmpjeYxZv4UMReAeHFUATF5s4LQOOYQ5jCUcY7zg6aL/36wYnQQf4ZRG4DiEN4aMfuDYh4bsfuDYhFYFD0fdi1JSx7QrpH5w9Tv+pjtVZnri22rfYyaBT/YA5vA4SvI6LXm2xTnH9KVu6LTYG3sZxrKJS9l0h5flM7zg0iVtMVgD/JaQicPg/ilVMdBYvYiHH8BpXPQJ8zAqpDDi7Jq/uYRTaxVdMZopmrjT4Exs4iwEmtmXBz+36L+OuCmiZmSvseB5r7fS+VAUtA55BmIeT0aUydlGqKwNlHTUG/gHwKlYfkJWuMAAAAABJRU5ErkJggg=="/>
+          Speak to 'em directly in chat
+        </div>
+
+        <div class="flex flex-row items-center">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAY5JREFUSEvN1jFIVXEUx/GPi1Okm4KDLlJtgpNBpKNDSks0OoYgbtIkNITo0OAiba46SLQ46hIFtSeBoNDQWIjhZN3/4//kdXn3+b/wf733psfld8/3nHN//3P+A3r0G+gRVwp4Aksxwd3i/1lFsqm6xusp4FkcRdgcjivAqbr+Az/CG0wndqSTTf7gC1bxsVVYbvUQvuNOZtP9xBh+N+OWwQ/xITO0GW4Gn6rArQbJzf/HmOWK+wLc6eikdqPyiHWquG/BI/iFqw7ld6XicNZ/YOt/gkdxjguM47LuGK3zjYfxAJN4jvkI28d7fCuen8RkmnlkafUrrN9i52XstGiygEO8jcJMLyvgZWiQZQOHYO+wWIJvx0VQzikrOHzPJyXC28LhL9p0Iiv4NG6azWJ93sVKXCyPuwkeRLj+rMX1GVjB5a/xrJvg1Bmd9TjVhWZ3dZ0Eks11H1/rRK6hvRenW+OVdtfbAzytETBFuhfH7I22HTg8WygGxVSGW+Y1PuOwnF3KhT6lotqanoH/Ag1hdh9qnlIAAAAAAElFTkSuQmCC"/>
+          {{rent.carForRent.manifacturingYear}}
+        </div>
+        <div class="flex flex-row items-center">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAi5JREFUSEvl1svrTVEUwPHPrzxKSnmMUJKipJQo8n5EGCADJgwoKQMDQ3nkD8BMMkAKEybehDxiREqUUIoUkaSkhLO0T20/57qP7vFT9uTec87a67vX2uvVo49WTx9x/VPgcRjVxBPf8RDvOvVYbvFAnMHCNpTtwY4kPwjn0vONZjpy8Docabah4vtovMRxrCnA37ANe/+kKwfHyXcn4XlNDjA5UzwHYeFm7Ef/tPdYcaCN+FKlKwfvws4k1Czo5uJadsjr6f80nMLI9PwAy5NHfuF3GxzAsH5sRnmF2Xiek7sJDl1Pe0FLVmTApFbA7cRYxEO4emiWXvtSvMTVbU3KhuF9qbiRxZ2AJ+Bx2rgWJ1KUR7THmonbdYCH4A0GJJefxTJEQYo1q6gRt+oAh84oKNsbuKtMu5+fu+nq0NcPG7CiiO75+Ijhf8Pi3sYuKO72Sl3gKBJv8QgHsgALXtT9y3WBcyu/YmVqNvF+ES4lgRm4083gCos/YCqiQ71ObTWaRa3gsoBEUB1KFo3Hk8LCxbhQl8UlOH6vJkiZOktwvm5wHkhllVpaXEEUkljTcbebd1xanIOjG91M+Xw6wabgXhU4HwQaFJ/K16VboxU+SxJHcRhbsCpNJYPxuQq8Pgm3Aw3ZMXiRNsUdV00vB4to35QrzktmnOh+VtRbOcDJ1IFK2REISJTMcl0sJtLVxRz2qRG4fN+N8TZ688SU0zEc/LaazVatWN2RzP8H/gGvXIIfLH4LsgAAAABJRU5ErkJggg=="/>
+          {{rent.carForRent.fuel}}
+        </div>
+        <div class="flex flex-row items-center">
+          <svg class="h-8 w-8 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="7" cy="17" r="2" />  <circle cx="17" cy="17" r="2" />  <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5" /></svg>
+          {{rent.carForRent.make}}
+        </div>
+        <div class="flex flex-row space-x-2 items-center">
+          <strong>From : </strong>{{rent.startDate  | date:'yyyy-MM-dd HH:mm' }}
+          <strong>To : </strong>{{rent.endDate  | date:'yyyy-MM-dd HH:mm' }}
+        </div>
+      </div>
+      <div id="social" class="flex flex-wrap justify-start items-center gap-4">
+        <a rel="noopener"  class="bg-red-500 text-center rounded-lg p-5 w-64 flex items-center gap-2 text-white">
+          <span class="text-center"  (click)="cancelRent(rent.client.clientId,rent.carForRent.carRentId)">Cancel the Rent :( </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<nav aria-label="Page navigation example" class="flex justify-center ">
+  <ul class="inline-flex -space-x-px text-base h-10">
+    <li *ngFor="let page of pages">
+      <a [routerLink]="'/profile'" (click)="loadPage(page)"
+         [class.active-page]="currentPage === page"
+         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white
+                transition-colors duration-300 ease-in-out
+                focus:outline-none"
+      >{{ page }}</a>
+    </li>
+  </ul>
+</nav>
+
+

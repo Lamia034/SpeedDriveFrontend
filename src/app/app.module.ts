@@ -18,9 +18,17 @@ import {LoginService} from "./services/LoginService";
 import {AuthInterceptor} from "./interceptor/AuthInterceptor";
 import { CarDetailsComponent } from './car-details/car-details.component';
 import {NgOptimizedImage} from "@angular/common";
+// import {CloudinaryModule} from "@cloudinary/ng";
+import {CarService} from "./services/CarService";
+import { RentsbyagencyComponent } from './rentsbyagency/rentsbyagency.component';
+import { MessagesComponent } from './messages/messages.component';
+import {SharedService} from "./shared.service";
+
+
+
 // import {AuthService} from "./services/AuthService";
 export function tokenGetter() {
-  const authResponseJson = localStorage.getItem('authResponse');
+  const authResponseJson = localStorage.getItem('speedDrive_authResponse');
 
   if (authResponseJson) {
     const authResponse: AuthResponse = JSON.parse(authResponseJson);
@@ -39,28 +47,37 @@ export function tokenGetter() {
     DashboardComponent,
     FeedsComponent,
     CarsComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    RentsbyagencyComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    // CloudinaryModule,
+    // provideCloudinary(new Cloudinary({ cloud_name: 'your_cloud_name' })), // Replace with your Cloudinary cloud name
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
       },
     }),
     ReactiveFormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+
   ],
   providers: [LoginService,
+    SharedService,
+    DashboardComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
     },
+    CarService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
