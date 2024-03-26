@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
         imageUrl => {
           console.log('Image uploaded successfully:', imageUrl);
           this.imageURL = imageUrl;
-          this.newCar.imagePath = imageUrl; // or whatever the property name is
+          this.newCar.imagePath = imageUrl; 
         },
         error => {
           console.error('Failed to upload image:', error);
@@ -79,26 +79,6 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  // onImageChange(event: any) {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     this.selectedImage = file;
-  //   }
-  // }
-
-  onUpdateImageChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const imageUrl = e.target.result;
-        this.updateCarRentForm.patchValue({
-          imagePath: imageUrl
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 
 
 
@@ -116,7 +96,7 @@ export class DashboardComponent implements OnInit {
         fuel: fuelNew,
         rentalPrice: rentalPriceNew,
         // @ts-ignore
-        imagePath: this.imageURL, // Use imageURL instead of selectedImage
+        imagePath: this.imageURL,
         agencyId: LoggedAgencyId
       };
       console.log("new car", newCar);
@@ -128,7 +108,6 @@ export class DashboardComponent implements OnInit {
           this.carRentAddForm.patchValue({
             imagePath: response.imagePath
           });
-          // Optionally reset the form after successful submission
           this.carRentAddForm.reset();
           this.refreshCars();
           this.cancelAdd();
