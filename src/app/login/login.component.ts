@@ -34,13 +34,12 @@ export class LoginComponent {
     this.loginService.login(this.loginRequest)
       .subscribe(
         (authResponse: AuthResponse) => {
-          // this.sharedService.isLoggedIn = true; // Set isLoggedIn to true
+          // this.sharedService.isLoggedIn = true;
           console.log("logged in login comp:",this.sharedService.isLoggedIn)
           this.sharedService.setIsLoggedIn(true);
           // console.log('Login successful:', authResponse);
           localStorage.setItem('speedDrive_authResponse', authResponse.token);
 
-          // Call setRoles to update user roles
           this.authGuard.setRoles(authResponse.token);
 
           const token = authResponse.token;

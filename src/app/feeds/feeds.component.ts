@@ -23,7 +23,6 @@ export class FeedsComponent implements OnInit {
 
   constructor(
     private feedsService: FeedsService,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -72,11 +71,6 @@ export class FeedsComponent implements OnInit {
     this.currentPage = page;
   }
 
-  // private refreshCars(): void {
-  //   this.feedsService.getAllCarsForRent(  this.currentPage, this.pageSize ).subscribe(
-  //     carsForRent => this.carsForRent = carsForRent,
-  //     error => console.error('Error fetching cars for rent:', error)
-  //   );
-  // }
+
 }
 

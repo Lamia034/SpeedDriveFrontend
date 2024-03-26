@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
         imageUrl => {
           console.log('Image uploaded successfully:', imageUrl);
           this.imageURL = imageUrl;
-          this.newCar.imagePath = imageUrl; 
+          this.newCar.imagePath = imageUrl;
         },
         error => {
           console.error('Failed to upload image:', error);
